@@ -17,7 +17,11 @@ void cVector3::Em()
     Cm();
 }
 
-void cVector3::Dm()
+void cVector3::Dm() const
 {
-    
+    delete[] Xyz;
+
+    delete X;
+    delete Y;
+    delete Z;
 }

@@ -160,6 +160,9 @@
   <ItemGroup>
     <ClInclude Include="vector3\Vector3.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="vector3\Constructors\cConstructors.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
