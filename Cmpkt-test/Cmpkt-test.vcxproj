@@ -155,6 +155,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cmpkt_test.cpp" />
+    <ClCompile Include="vector3\Memory\mem.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="vector3\Vector3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
