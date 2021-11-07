@@ -18,5 +18,13 @@
     <ClCompile Include="Cmpkt_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="vector3\Memory\mem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="vector3\Vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

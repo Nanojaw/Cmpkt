@@ -1,6 +1,6 @@
 #include <array>
 #include <iostream>
-#include <vector>
+#include "Cmpkt.h"
 
 class cObject
 {
@@ -19,6 +19,8 @@ int main()
     std::cout << sizeof test << std::endl;
     std::array<int, 10> lol{};
     lol.fill(1);
+
+    cmpkt().Save("lol", 2);
 
     auto large = cObject(10, lol);
     std::cout << sizeof large << std::endl;
