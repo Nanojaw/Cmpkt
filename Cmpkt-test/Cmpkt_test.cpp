@@ -1,6 +1,6 @@
 #include <array>
 #include <iostream>
-#include "Cmpkt.h"
+#include "cmpkt.h"
 
 class cObject
 {
@@ -16,13 +16,14 @@ public:
 int main()
 {
     auto test = cObject();
-    std::cout << sizeof test << std::endl;
+    
     std::array<int, 10> lol{};
     lol.fill(1);
-
-    cmpkt().Save("lol", 2);
-
     auto large = cObject(10, lol);
-    std::cout << sizeof large << std::endl;
+    
+    auto binary = std::string("lol");
+    auto filename = std::string("data");
+    cmpkt::Save(binary, filename);
+
     return 0;
 }
