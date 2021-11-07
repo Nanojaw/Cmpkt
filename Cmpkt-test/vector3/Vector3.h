@@ -12,5 +12,16 @@ public:
     //Memory Stuff
     void Cm();
     void Em();
-    void Dm();
+    void Dm() const;
+
+    //Constructors --- Create Constructors
+    cVector3();
+    cVector3(const float& x, const float& y, const float& z);
+    cVector3(const float& scalar);
+
+    //Constructors --- Utility Constructors
+    cVector3(const cVector3& source);
+    cVector3(const cVector3&& source);
+
+    
 };
