@@ -17,15 +17,10 @@ int main()
 {
     auto test = cObject();
     
-    std::array<int, 10> lol{};
-    lol.fill(1);
-    auto large = cObject(10, lol);
+    std::array<int, 100> lol{};
+    lol.fill(100);
     
-    auto binary = std::string("lol");
-    auto filename = std::string("data");
-    auto lel = long double(5.234312323445346554367457884655);
-
-    cmpkt::serialize_primitives(lel);
+    std::cout << cmpkt::serialize_array(&lol[0], lol.size()) << std::endl;
 
     return 0;
 }
