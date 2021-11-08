@@ -23,7 +23,9 @@ int main()
     
     auto binary = std::string("lol");
     auto filename = std::string("data");
-    cmpkt::Save(binary, filename);
+    auto lel = long double(5.234312323445346554367457884655);
+
+    cmpkt::serialize_primitives(lel);
 
     return 0;
 }

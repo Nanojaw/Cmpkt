@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cmpkt-test", "Cmpkt-test\Cmpkt-test.vcxproj", "{ADABA592-3188-40F9-A135-5D526D0D54DC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cmpkt", "Cmpkt\Cmpkt.vcxproj", "{B8F87B15-8611-42F4-98D3-D39E37D2082C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -20,13 +18,5 @@ Global
 		{ADABA592-3188-40F9-A135-5D526D0D54DC}.Release|Win32.Build.0 = Release|Win32
 		{ADABA592-3188-40F9-A135-5D526D0D54DC}.Release|x64.ActiveCfg = Release|x64
 		{ADABA592-3188-40F9-A135-5D526D0D54DC}.Release|x64.Build.0 = Release|x64
-		{B8F87B15-8611-42F4-98D3-D39E37D2082C}.Debug|Win32.ActiveCfg = Debug|Win32
-		{B8F87B15-8611-42F4-98D3-D39E37D2082C}.Debug|Win32.Build.0 = Debug|Win32
-		{B8F87B15-8611-42F4-98D3-D39E37D2082C}.Debug|x64.ActiveCfg = Debug|x64
-		{B8F87B15-8611-42F4-98D3-D39E37D2082C}.Debug|x64.Build.0 = Debug|x64
-		{B8F87B15-8611-42F4-98D3-D39E37D2082C}.Release|Win32.ActiveCfg = Release|Win32
-		{B8F87B15-8611-42F4-98D3-D39E37D2082C}.Release|Win32.Build.0 = Release|Win32
-		{B8F87B15-8611-42F4-98D3-D39E37D2082C}.Release|x64.ActiveCfg = Release|x64
-		{B8F87B15-8611-42F4-98D3-D39E37D2082C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 EndGlobal
