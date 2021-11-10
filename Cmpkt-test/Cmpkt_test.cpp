@@ -17,10 +17,17 @@ int main()
 {
     auto test = cObject();
     
-    std::array<int, 100> lol{};
-    lol.fill(100);
-    
-    cmpkt::Deserializer(cmpkt::Serialize_Array(&lol[0], lol.size())).DeserializeInt(0);
+    std::array<int, 10> lol{};
+    lol.fill(269554195);
+
+    const auto pair = cmpkt::Deserializer(cmpkt::Serialize_Array(&lol[0], lol.size())).DeserializeIntArray(0);
+
+    for (int i = 0; i < pair.second; i++)
+    {
+        std::cout << pair.first[i] << std::endl;
+    }
+
+    delete[] pair.first; // delete the array
 
     return 0;
 }
