@@ -1,16 +1,14 @@
 #pragma once
 
-class cmpkt
+namespace cmpkt
 {
-public:
-    static void Save(const std::string& data, const std::string& filename)
+	inline void Save(const std::string& data, const std::string& filename)
     {
         std::cout << filename << ": " << data << std::endl;
     }
 
-    // TODO make functions for serializing primitive types
     template<typename T>
-	static std::string serialize_primitives(T primitive)
+	std::string Serialize_Primitives(T primitive)
     {
 		std::string result;
 	    switch (sizeof primitive)
@@ -45,13 +43,28 @@ public:
     }
 
 	template<typename T>
-	static std::string serialize_array(T* array, int size)
+	std::string Serialize_Array(T* array, int size)
     {
-    	std::string result = serialize_primitives(size);
+    	std::string result = Serialize_Primitives(size);
 	    for (int i = 0; i < size; i++)
 	    {
-		    result += serialize_primitives(array[i]);
+		    result += Serialize_Primitives(array[i]);
 	    }
     	return result;
     }
-};
+
+	class Deserializer
+	{
+	public:
+		std::string Serialized;
+
+		explicit Deserializer(const std::string& serialized) : Serialized(serialized) {}
+
+		int DeserializeInt(int index) { return *(int*)&Serialized[index]; }
+		int DeserializeBool(int index) { return *(bool*)&Serialized[index]; }
+		int DeserializeChar(int index) { return Serialized[index]; }
+		int DeserializeWchar(int index) { return *(wchar_t*)&Serialized[index]; }
+		int DeserializeFloat(int index) { return *(float*)&Serialized[index]; }
+		int DeserializeDouble(int index) { return *(double*)&Serialized[index]; }
+	};
+}

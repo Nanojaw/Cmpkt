@@ -20,7 +20,7 @@ int main()
     std::array<int, 100> lol{};
     lol.fill(100);
     
-    std::cout << cmpkt::serialize_array(&lol[0], lol.size()) << std::endl;
+    cmpkt::Deserializer(cmpkt::Serialize_Array(&lol[0], lol.size())).DeserializeInt(0);
 
     return 0;
 }
