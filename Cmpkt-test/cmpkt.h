@@ -70,8 +70,8 @@ namespace cmpkt
 			pair.second = DeserializeInt(index); // getting size of array
 			const auto array = new int[pair.second]; // Creating array on heap
 			pair.first = array; // Setting the array as the first element
-			for (int i = 4; i < pair.second * 4 + 4; i+=4)
-				array[i / 4 - 1] = DeserializeInt(index + i); // Filling the array
+			for (int i = sizeof(int); i < pair.second * sizeof(int) + sizeof(int); i+=sizeof(int))
+				array[i / sizeof(int) - 1] = DeserializeInt(index + i); // Filling the array
 			return pair;
 		}
 
@@ -81,8 +81,8 @@ namespace cmpkt
 			pair.second = DeserializeInt(index); // getting size of array
 			auto array = new bool[pair.second]; // Creating array on heap
 			pair.first = array; // Setting the array as the first element
-			for (int i = 4; i < pair.second + 4; i++)
-				array[i - 1] = DeserializeBool(index + i); // Filling the array
+			for (int i = sizeof(int); i < pair.second * sizeof(bool) + sizeof(int); i+=sizeof(bool))
+				array[i / sizeof(bool) - 1] = DeserializeInt(index + i); // Filling the array
 			return pair;
 		}
 		
@@ -92,8 +92,8 @@ namespace cmpkt
 			pair.second = DeserializeInt(index); // getting size of array
 			const auto array = new char[pair.second]; // Creating array on heap
 			pair.first = array; // Setting the array as the first element
-			for (int i = 4; i < pair.second + 4; i++)
-				array[i - 1] = DeserializeInt(index + i); // Filling the array
+			for (int i = sizeof(int); i < pair.second * sizeof(char) + sizeof(int); i+=sizeof(char))
+				array[i / sizeof(char) - 1] = DeserializeInt(index + i); // Filling the array
 			return pair;
 		}
 
@@ -103,8 +103,8 @@ namespace cmpkt
 			pair.second = DeserializeInt(index); // getting size of array
 			const auto array = new wchar_t[pair.second]; // Creating array on heap
 			pair.first = array; // Setting the array as the first element
-			for (int i = 4; i < pair.second * 2 + 4; i+=2)
-				array[i / 2 - 1] = DeserializeInt(index + i); // Filling the array
+			for (int i = sizeof(int); i < pair.second * sizeof(wchar_t) + sizeof(int); i+=sizeof(wchar_t))
+				array[i / sizeof(wchar_t) - 1] = DeserializeInt(index + i); // Filling the array
 			return pair;
 		}
 
@@ -114,8 +114,8 @@ namespace cmpkt
 			pair.second = DeserializeInt(index); // getting size of array
 			const auto array = new float[pair.second]; // Creating array on heap
 			pair.first = array; // Setting the array as the first element
-			for (int i = 4; i < pair.second * 4 + 4; i+=4)
-				array[i / 4 - 1] = DeserializeInt(index + i); // Filling the array
+			for (int i = sizeof(int); i < pair.second * sizeof(float) + sizeof(int); i+=sizeof(float))
+				array[i / sizeof(float) - 1] = DeserializeInt(index + i); // Filling the array
 			return pair;
 		}
 
@@ -125,8 +125,8 @@ namespace cmpkt
 			pair.second = DeserializeInt(index); // getting size of array
 			const auto array = new double[pair.second]; // Creating array on heap
 			pair.first = array; // Setting the array as the first element
-			for (int i = 4; i < pair.second * 8 + 4; i+=8)
-				array[i / 8 - 1] = DeserializeInt(index + i); // Filling the array
+			for (int i = sizeof(int); i < pair.second * sizeof(double) + sizeof(int); i+=sizeof(double))
+				array[i / sizeof(double) - 1] = DeserializeInt(index + i); // Filling the array
 			return pair;
 		}
 	};
