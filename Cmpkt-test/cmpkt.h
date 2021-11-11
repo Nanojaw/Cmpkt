@@ -1,11 +1,27 @@
 #pragma once
+#include <vector>
+#include <fstream>
 
 namespace cmpkt
 {
 	inline void Save(const std::string& data, const std::string& filename)
     {
-        std::cout << filename << ": " << data << std::endl;
+		std::ofstream file(filename.c_str());
+		file << data;
+		file.close();
     }
+
+	inline std::string Load(const std::string& filename)
+	{
+		std::ifstream file(filename.c_str());
+
+		if(!file.is_open()) return std::string();
+
+		auto data = std::string(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>()); // Have to close file, therefore we create a variable
+		
+		file.close();
+		return data;
+	}
 
     template<typename T>
 	std::string Serialize_Primitives(T primitive)
@@ -64,70 +80,64 @@ namespace cmpkt
 		float DeserializeFloat(int index) { return *(float*)&Serialized[index]; }
 		double DeserializeDouble(int index) { return *(double*)&Serialized[index]; }
 
-		std::pair<int*, int> DeserializeIntArray(int index)
+		std::vector<int> DeserializeIntArray(int index)
 		{
-			std::pair<int*, int> pair; // Making pair
-			pair.second = DeserializeInt(index); // getting size of array
-			const auto array = new int[pair.second]; // Creating array on heap
-			pair.first = array; // Setting the array as the first element
-			for (int i = sizeof(int); i < pair.second * sizeof(int) + sizeof(int); i+=sizeof(int))
-				array[i / sizeof(int) - 1] = DeserializeInt(index + i); // Filling the array
-			return pair;
+			const int length = DeserializeInt(index); // Getting size of array
+			std::vector<int> vector;
+			vector.reserve(length);
+			for (int i = sizeof(int); i < length * sizeof(int) + sizeof(int); i+=sizeof(int))
+				vector.push_back(DeserializeInt(index + i)); // Filling the array
+			return vector;
 		}
 
-		std::pair<bool*, int> DeserializeBoolArray(int index)
+		std::vector<bool> DeserializeBoolArray(int index)
 		{
-			std::pair<bool*, int> pair; // Making pair
-			pair.second = DeserializeInt(index); // getting size of array
-			auto array = new bool[pair.second]; // Creating array on heap
-			pair.first = array; // Setting the array as the first element
-			for (int i = sizeof(int); i < pair.second * sizeof(bool) + sizeof(int); i+=sizeof(bool))
-				array[i / sizeof(bool) - 1] = DeserializeInt(index + i); // Filling the array
-			return pair;
+			const int length = DeserializeInt(index); // Getting size of array
+			std::vector<bool> vector;
+			vector.reserve(length);
+			for (int i = sizeof(int); i < length * sizeof(bool) + sizeof(int); i+=sizeof(bool))
+				vector.push_back(DeserializeBool(index + i)); // Filling the array
+			return vector;
 		}
 		
-		std::pair<char*, int> DeserializeCharArray(int index)
+		std::vector<char> DeserializeCharArray(int index)
 		{
-			std::pair<char*, int> pair; // Making pair
-			pair.second = DeserializeInt(index); // getting size of array
-			const auto array = new char[pair.second]; // Creating array on heap
-			pair.first = array; // Setting the array as the first element
-			for (int i = sizeof(int); i < pair.second * sizeof(char) + sizeof(int); i+=sizeof(char))
-				array[i / sizeof(char) - 1] = DeserializeInt(index + i); // Filling the array
-			return pair;
+			const int length = DeserializeInt(index); // Getting size of array
+			std::vector<char> vector;
+			vector.reserve(length);
+			for (int i = sizeof(int); i < length * sizeof(char) + sizeof(int); i+=sizeof(char))
+				vector.push_back(DeserializeChar(index + i)); // Filling the array
+			return vector;
 		}
 
-		std::pair<wchar_t*, int> DeserializeWcharArray(int index)
+		std::vector<wchar_t> DeserializeWcharArray(int index)
 		{
-			std::pair<wchar_t*, int> pair; // Making pair
-			pair.second = DeserializeInt(index); // getting size of array
-			const auto array = new wchar_t[pair.second]; // Creating array on heap
-			pair.first = array; // Setting the array as the first element
-			for (int i = sizeof(int); i < pair.second * sizeof(wchar_t) + sizeof(int); i+=sizeof(wchar_t))
-				array[i / sizeof(wchar_t) - 1] = DeserializeInt(index + i); // Filling the array
-			return pair;
+			const int length = DeserializeInt(index); // Getting size of array
+			std::vector<wchar_t> vector;
+			vector.reserve(length);
+			for (int i = sizeof(int); i < length * sizeof(wchar_t) + sizeof(int); i+=sizeof(wchar_t))
+				vector.push_back(DeserializeWchar(index + i)); // Filling the array
+			return vector;
 		}
 
-		std::pair<float*, int> DeserializeFloatArray(int index)
+		std::vector<float> DeserializeFloatArray(int index)
 		{
-			std::pair<float*, int> pair; // Making pair
-			pair.second = DeserializeInt(index); // getting size of array
-			const auto array = new float[pair.second]; // Creating array on heap
-			pair.first = array; // Setting the array as the first element
-			for (int i = sizeof(int); i < pair.second * sizeof(float) + sizeof(int); i+=sizeof(float))
-				array[i / sizeof(float) - 1] = DeserializeInt(index + i); // Filling the array
-			return pair;
+			const int length = DeserializeInt(index); // Getting size of array
+			std::vector<float> vector;
+			vector.reserve(length);
+			for (int i = sizeof(int); i < length * sizeof(float) + sizeof(int); i+=sizeof(float))
+				vector.push_back(DeserializeFloat(index + i)); // Filling the array
+			return vector;
 		}
 
-		std::pair<double*, int> DeserializeDoubleArray(int index)
+		std::vector<double> DeserializeDoubleArray(int index)
 		{
-			std::pair<double*, int> pair; // Making pair
-			pair.second = DeserializeInt(index); // getting size of array
-			const auto array = new double[pair.second]; // Creating array on heap
-			pair.first = array; // Setting the array as the first element
-			for (int i = sizeof(int); i < pair.second * sizeof(double) + sizeof(int); i+=sizeof(double))
-				array[i / sizeof(double) - 1] = DeserializeInt(index + i); // Filling the array
-			return pair;
+			const int length = DeserializeInt(index); // Getting size of array
+			std::vector<double> vector;
+			vector.reserve(length);
+			for (int i = sizeof(int); i < length * sizeof(double) + sizeof(int); i+=sizeof(double))
+				vector.push_back(DeserializeDouble(index + i)); // Filling the array
+			return vector;
 		}
 	};
 }

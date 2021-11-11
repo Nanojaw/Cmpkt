@@ -15,19 +15,14 @@ public:
 
 int main()
 {
-    auto test = cObject();
-    
     std::array<int, 10> lol{};
     lol.fill(269554195);
 
-    const auto pair = cmpkt::Deserializer(cmpkt::Serialize_Array(&lol[0], lol.size())).DeserializeIntArray(0);
+    cmpkt::Save(cmpkt::Serialize_Array(&lol[0], lol.size()), "data.txt");
 
-    for (int i = 0; i < pair.second; i++)
-    {
-        std::cout << pair.first[i] << std::endl;
-    }
+    std::vector<int> test = cmpkt::Deserializer(cmpkt::Load("data.txt")).DeserializeIntArray(0);
 
-    delete[] pair.first; // delete the array
+    for (int i = 0; i < test.size(); i++) std::cout << test[i] << std::endl;
 
     return 0;
 }
