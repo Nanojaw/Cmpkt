@@ -20,7 +20,7 @@ int main()
 
     cmpkt::Save(cmpkt::Serialize_Array(&lol[0], lol.size()), "data.txt");
 
-    std::vector<int> test = cmpkt::Deserializer(cmpkt::Load("data.txt")).DeserializeIntArray(0);
+    std::vector<int> test = cmpkt::cDeserializer(cmpkt::Load("data.txt")).DeserializeIntArray(0);
 
     for (int i = 0; i < test.size(); i++) std::cout << test[i] << std::endl;
 
