@@ -17,10 +17,7 @@ namespace cmpkt
 
 		if(!file.is_open()) return std::string();
 
-		auto data = std::string(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>()); // Have to close file, therefore we create a variable
-		
-		file.close();
-		return data;
+		return std::string(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>());
 	}
 
     template<typename T>
